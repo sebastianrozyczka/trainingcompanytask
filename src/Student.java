@@ -2,10 +2,10 @@ public class Student extends Person {
     private int semester;
     private String education;
 
-    public Student(String firstName, String lastName, int age, int semester, String course) {
+    public Student(String firstName, String lastName, int age, int semester, String education) {
         super(firstName, lastName, age);
         this.semester = semester;
-        this.education = course;
+        this.education = education;
     }
 
     public int getSemester() {

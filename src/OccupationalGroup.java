@@ -32,4 +32,8 @@ public class OccupationalGroup {
     public String infoAboutStudentWithIndex(int index) {
         return "Student o indeksie: " + (index + 1) + ", imię i nazwisko: " + students[index].getFirstName() + " " + students[index].getLastName();
     }
+
+    void addStudent(int index, String firstName, String lastName, int age, int semester, String education) {
+        students[index] = new Student(firstName, lastName, age, semester, education);
+    }
 }

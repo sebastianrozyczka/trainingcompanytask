@@ -4,10 +4,11 @@ public class Application {
 
         Lecturer lecturer = groupCreator.createLecturer("Andrzej", "Kowalski", 38, 7329.4, "inżynier");
         Student[] studentTable = groupCreator.createEmptyStudentTable(3);
-        groupCreator.putStudentIntoTable(studentTable, 0, "Jan", "Kowalski", 21, 2, "średnie");
-        groupCreator.putStudentIntoTable(studentTable, 1, "Sebastian", "Różyczka", 23, 5, "w trakcie studiów");
-        groupCreator.putStudentIntoTable(studentTable, 2, "Artur", "Lewandowski", 31, 4, "inżynier");
+
         OccupationalGroup occupationalGroup = groupCreator.createOccupationalGroup(lecturer, studentTable);
+        occupationalGroup.addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
+        occupationalGroup.addStudent(1, "Jan", "Nowak", 23, 5, "w trakcie studiów");
+        occupationalGroup.addStudent(2, "Kacper", "Lewandowski", 23, 5, "w trakcie studiów");
 
         System.out.println(occupationalGroup.infoAboutGroupsLecturer());
         System.out.println(occupationalGroup.infoAboutStudentWithIndex(0));
