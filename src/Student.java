@@ -1,11 +1,16 @@
 public class Student extends Person {
     private int semester;
     private String education;
+    private double grade;
 
     public Student(String firstName, String lastName, int age, int semester, String education) {
         super(firstName, lastName, age);
         this.semester = semester;
         this.education = education;
+    }
+
+    public Student(double grade) {
+        this.grade = grade;
     }
 
     public int getSemester() {
@@ -22,5 +27,13 @@ public class Student extends Person {
 
     public void setEducation(String education) {
         this.education = education;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
     }
 }

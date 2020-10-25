@@ -3,16 +3,25 @@ public class Application {
         GroupCreator groupCreator = new GroupCreator();
 
         Lecturer lecturer = groupCreator.createLecturer("Andrzej", "Kowalski", 38, 7329.4, "inżynier");
-        Student[] studentTable = groupCreator.createEmptyStudentTable(3);
+        Student[] studentTableForFirstGroup = groupCreator.createEmptyStudentTable(1);
+        Student[] studentTableForSecondGroup = groupCreator.createEmptyStudentTable(1);
 
-        OccupationalGroup occupationalGroup = groupCreator.createOccupationalGroup(lecturer, studentTable);
-        occupationalGroup.addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
-        occupationalGroup.addStudent(1, "Jan", "Nowak", 23, 5, "w trakcie studiów");
-        occupationalGroup.addStudent(2, "Kacper", "Lewandowski", 23, 5, "w trakcie studiów");
+        OccupationalGroup[] occupationalGroups = new OccupationalGroup[2];
+        occupationalGroups[0] = groupCreator.createOccupationalGroup(lecturer, studentTableForFirstGroup);
+        occupationalGroups[1] = groupCreator.createOccupationalGroup(lecturer, studentTableForSecondGroup);
+        occupationalGroups[0].addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
+        occupationalGroups[1].addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
 
-        System.out.println(occupationalGroup.infoAboutGroupsLecturer());
-        System.out.println(occupationalGroup.infoAboutStudentWithIndex(0));
-        System.out.println(occupationalGroup.infoAboutStudentWithIndex(1));
-        System.out.println(occupationalGroup.infoAboutStudentWithIndex(2));
+
+        occupationalGroups[0].giveStudentGrade(0, 5);
+        occupationalGroups[1].giveStudentGrade(0, 3);
+
+        System.out.println(occupationalGroups[0].infoAboutGroupsLecturer());
+        System.out.println(occupationalGroups[0].infoAboutStudentWithIndex(0));
+        System.out.println(occupationalGroups[0].infoAboutStudentGrades(0));
+
+        System.out.println(occupationalGroups[1].infoAboutGroupsLecturer());
+        System.out.println(occupationalGroups[1].infoAboutStudentWithIndex(0));
+        System.out.println(occupationalGroups[1].infoAboutStudentGrades(0));
     }
 }

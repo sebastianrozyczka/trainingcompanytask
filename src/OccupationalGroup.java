@@ -33,7 +33,15 @@ public class OccupationalGroup {
         return "Student o indeksie: " + (index + 1) + ", imię i nazwisko: " + students[index].getFirstName() + " " + students[index].getLastName();
     }
 
-    void addStudent(int index, String firstName, String lastName, int age, int semester, String education) {
+    public String infoAboutStudentGrades(int index) {
+        return "Student o indeksie: " + (index + 1) + ", ocena: " + students[index].getGrade() + ". ";
+    }
+
+    public void addStudent(int index, String firstName, String lastName, int age, int semester, String education) {
         students[index] = new Student(firstName, lastName, age, semester, education);
+    }
+
+    public void giveStudentGrade(int index, double grade) {
+        students[index].setGrade(grade);
     }
 }
