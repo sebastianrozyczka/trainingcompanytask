@@ -1,10 +1,14 @@
+import java.util.ArrayList;
+
 public class OccupationalGroup {
     private Lecturer lecturer;
-    private Student[] students;
+    private ArrayList<Student> students;
+    private int number;
 
-    public OccupationalGroup(Lecturer lecturer, Student[] students) {
+    public OccupationalGroup(Lecturer lecturer, ArrayList<Student> students, int number) {
         this.lecturer = lecturer;
         this.students = students;
+        this.number = number;
     }
 
     public Lecturer getLecturer() {
@@ -15,12 +19,20 @@ public class OccupationalGroup {
         this.lecturer = lecturer;
     }
 
-    public Student[] getStudents() {
+    public ArrayList<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(ArrayList<Student> students) {
         this.students = students;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String infoAboutGroupsLecturer() {
@@ -30,18 +42,10 @@ public class OccupationalGroup {
     }
 
     public String infoAboutStudentWithIndex(int index) {
-        return "Student o indeksie: " + (index + 1) + ", imię i nazwisko: " + students[index].getFirstName() + " " + students[index].getLastName();
+        return "Student o indeksie: " + (index + 1) + ", imię i nazwisko: " + students.get(index).getFirstName() + " " + students.get(index).getLastName();
     }
 
-    public String infoAboutStudentGrades(int index) {
-        return "Student o indeksie: " + (index + 1) + ", ocena: " + students[index].getGrade() + ". ";
-    }
-
-    public void addStudent(int index, String firstName, String lastName, int age, int semester, String education) {
-        students[index] = new Student(firstName, lastName, age, semester, education);
-    }
-
-    public void giveStudentGrade(int index, double grade) {
-        students[index].setGrade(grade);
+    public void addStudent(String firstName, String lastName, int age, int semester, String education, ArrayList<Grade> grades) {
+        students.add(new Student(firstName, lastName, age, semester, education, grades));
     }
 }

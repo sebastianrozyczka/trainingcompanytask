@@ -1,27 +1,29 @@
+import java.util.ArrayList;
+
 public class Application {
     public static void main(String[] args) {
-        GroupCreator groupCreator = new GroupCreator();
+        GroupBuilder groupBuilder = new GroupBuilder();
 
-        Lecturer lecturer = groupCreator.createLecturer("Andrzej", "Kowalski", 38, 7329.4, "inżynier");
-        Student[] studentTableForFirstGroup = groupCreator.createEmptyStudentTable(1);
-        Student[] studentTableForSecondGroup = groupCreator.createEmptyStudentTable(1);
+        ArrayList<Grade> gradesInFirstGroup = groupBuilder.createGradeList();
+        ArrayList<Grade> gradesInSecondGroup = groupBuilder.createGradeList();
+        ArrayList<Student> studentsInFirstGroup = groupBuilder.createStudentList();
+        ArrayList<Student> studentsInSecondGroup = groupBuilder.createStudentList();
+        Lecturer lecturer = new Lecturer("Jan", "Kowalski", 43, 2900, "doktor");
 
-        OccupationalGroup[] occupationalGroups = new OccupationalGroup[2];
-        occupationalGroups[0] = groupCreator.createOccupationalGroup(lecturer, studentTableForFirstGroup);
-        occupationalGroups[1] = groupCreator.createOccupationalGroup(lecturer, studentTableForSecondGroup);
-        occupationalGroups[0].addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
-        occupationalGroups[1].addStudent(0, "Sebastian", "Rozyczka", 23, 5, "w trakcie studiów");
+        ArrayList<OccupationalGroup> occupationalGroups = new ArrayList<>();
+        occupationalGroups.add(new OccupationalGroup(lecturer, studentsInFirstGroup, 1));
+        occupationalGroups.add(new OccupationalGroup(lecturer, studentsInSecondGroup, 2));
+        occupationalGroups.get(0).addStudent("Sebastian", "Rozyczka", 23, 4, "w trakcie studiów", gradesInFirstGroup);
+        occupationalGroups.get(1).addStudent("Sebastian", "Rozyczka", 23, 4, "w trakcie studiów", gradesInSecondGroup);
 
+        studentsInFirstGroup.get(0).addGrade(0, 4, occupationalGroups.get(0));
+        studentsInFirstGroup.get(0).addGrade(1, 3, occupationalGroups.get(0));
+        studentsInFirstGroup.get(0).addGrade(2, 5, occupationalGroups.get(0));
+        studentsInFirstGroup.get(0).showInfoAboutGrades(occupationalGroups.get(0));
 
-        occupationalGroups[0].giveStudentGrade(0, 5);
-        occupationalGroups[1].giveStudentGrade(0, 3);
-
-        System.out.println(occupationalGroups[0].infoAboutGroupsLecturer());
-        System.out.println(occupationalGroups[0].infoAboutStudentWithIndex(0));
-        System.out.println(occupationalGroups[0].infoAboutStudentGrades(0));
-
-        System.out.println(occupationalGroups[1].infoAboutGroupsLecturer());
-        System.out.println(occupationalGroups[1].infoAboutStudentWithIndex(0));
-        System.out.println(occupationalGroups[1].infoAboutStudentGrades(0));
+        studentsInSecondGroup.get(0).addGrade(0, 3, occupationalGroups.get(1));
+        studentsInSecondGroup.get(0).addGrade(1, 2, occupationalGroups.get(1));
+        studentsInSecondGroup.get(0).addGrade(2, 5, occupationalGroups.get(1));
+        studentsInSecondGroup.get(0).showInfoAboutGrades(occupationalGroups.get(1));
     }
 }
